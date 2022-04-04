@@ -21,6 +21,6 @@
 (defn main-panel []
   (let [name (re-frame/subscribe [::subs/name])]
     [:div.section
-     [text-input :text-input]
+     [text-input :text-staging]
      [text-list]
      ]))
