@@ -16,11 +16,14 @@
 (defn text-list []
   (let [text @(re-frame/subscribe [::subs/list-subs])]
     [:div
-     [:ul (map (fn [s] [:li (str s)]) text)]]))
+     [:ul (map (fn [s] [:li s]) text)]]))
 
 (defn main-panel []
-  (let [name (re-frame/subscribe [::subs/name])]
+  (let [list  @(re-frame/subscribe [::subs/list-subs])
+        names @(re-frame/subscribe [::subs/name])]
     [:div.section
+     [:h1
+      "Hello from " names]
      [text-input :text-staging]
-     [text-list]
+     (map #(vector :div [:p %]) list)
      ]))
