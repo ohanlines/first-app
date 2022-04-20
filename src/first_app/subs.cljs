@@ -15,4 +15,4 @@
 (re-frame/reg-sub
  ::list-subs
  (fn [db]
-   (get db :persistant [])))
+   (get db :text [])))
