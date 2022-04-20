@@ -6,12 +6,13 @@
 
 (defn text-input [id]
   (let [value (re-frame/subscribe [::subs/text-subs id])]
-    [:div.field.has-addons
+    [:div.field.is-grouped
      [:div.control
       [:input {:value       @value
                :type        "text"
                :placeholder "Text Input"
-               :on-change   #(re-frame/dispatch [::events/update-text id (-> % .-target .-value)])}]
+               :on-change   #(re-frame/dispatch [::events/update-text id (-> % .-target .-value)])}]]
+     [:div.control
       [:button {:disabled   (zero? (count @value))
                 :on-click   #(do (re-frame/dispatch [::events/insert-text])
                                  (re-frame/dispatch [::events/dissoc-text]))} "Insert"]
@@ -21,5 +22,5 @@
   (let [list  @(re-frame/subscribe [::subs/list-subs])]
     [:div.section
      [text-input :text-staging]
-     (map #(vector :div [:p %]) list)
+     (map #(vector :p %) list)
      ]))
