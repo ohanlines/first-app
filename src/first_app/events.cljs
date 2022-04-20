@@ -9,7 +9,7 @@
 (re-frame/reg-event-db
  ::initialize-db
  (fn [_ _]
-   {:persistant (<-store :my-db)}))
+   {:text (<-store :my-db)}))
 
 ;; --- persistent reg-event-db function -------------
 (defn reg-event-persistent-db
@@ -28,8 +28,7 @@
 
 (re-frame/reg-event-db
  ::dissoc-text
- (fn [db]
-   (dissoc db :text-staging)))
+ (fn [db] (dissoc db :text-staging)))
 
 (reg-event-persistent-db
  ::insert-text
@@ -37,13 +36,8 @@
    (let [input   (get db :text-staging)
          storage (get db :text [])
          updated (concat storage (vector input))]
-     (-> db
-         (assoc :text updated)
-         (assoc :persistant updated)))))
+     (assoc db :text updated))))
 
 (reg-event-persistent-db
  ::clear-storage
- (fn [db]
-   (-> db
-       (assoc :text [])
-       (assoc :persistant []))))
+ (fn [db] (assoc db :text [])))
