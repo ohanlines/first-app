@@ -19,3 +19,4 @@
 /.clj-kondo/
 /.lsp/
 /.DS_Store
+/.cpcache/
