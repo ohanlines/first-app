@@ -1,0 +1,6 @@
+{:paths ["src/clj"]
+ :deps
+ {org.clojure/clojure          {:mvn/version "1.10.1"}
+  io.pedestal/pedestal.service {:mvn/version "0.5.9"}
+  io.pedestal/pedestal.jetty   {:mvn/version "0.5.9"}
+  org.slf4j/slf4j-simple       {:mvn/version "1.7.28"}}}
